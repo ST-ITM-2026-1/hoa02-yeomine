@@ -1,0 +1,425 @@
+/* --- base & reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- nav bar --- */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem 2rem;
+}
+
+/* brand title styling */
+.nav-brand a {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-brand a:hover {
+  color: #8f85ac;
+  background-color: transparent;
+}
+
+/* menu list styling */
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul a:hover,
+nav ul a.active {
+  background-color: #8f85ac;
+}
+
+/* --- common components --- */
+.portfolio-section {
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border-bottom: 2px dashed #ccc;
+}
+
+/* remove bottom border for the last section */
+.portfolio-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.portfolio-section h1,
+.portfolio-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 2rem;
+}
+
+/* --- home page (hero section) --- */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 60vh;
+  padding: 20px 0;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.highlight {
+  color: #8f85ac;
+}
+
+.hero-text h2 {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 15px;
+  font-weight: normal;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 25px;
+  line-height: 1.8;
+}
+
+/* hero action buttons */
+.hero-buttons a {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #c5c4e6;
+  color: white;
+  border: 2px solid #c5c4e6;
+}
+
+.btn-primary:hover {
+  background-color: #d5d7f2;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #c5c4e6;
+  border: 2px solid #c5c4e6;
+}
+
+.btn-secondary:hover {
+  background-color: #d5d7f2;
+  color: white;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #eee;
+}
+
+/* --- projects & experiences page --- */
+.projects-grid {
+  display: grid;
+  /* automatically wrap columns based on available space(as many as fit) */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* if we want to split into a specific number of columns(n), use grid-template-columns: repeat(n, 1fr); */
+  gap: 20px;
+}
+
+/* project cards - flexbox layout to push button to the bottom */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 16px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.experience-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 16px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.project-card h3,
+.experience-header h3 {
+  color: #8f85ac;
+  margin-bottom: 10px;
+}
+
+/* github link button */
+.github-link {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+  /* push the button to the bottom of the flex container */
+  margin-top: auto;
+}
+
+.github-link:hover {
+  background-color: #555;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.experience-date {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* --- skills page --- */
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.skill-item {
+  background: #f9f9f9;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skill-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-name {
+  font-weight: bold;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.skill-score {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* fractional star rating implementation using clipping */
+.star-rating {
+  position: relative;
+  font-size: 1.5rem;
+  color: #ccc;
+  display: inline-block;
+}
+
+.star-rating-fill {
+  color: #f39c12;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* --- contact page --- */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.contact-info h2,
+.contact-form-wrapper h2 {
+  color: #8c719e;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.contact-info p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.info-list {
+  list-style: none;
+  line-height: 2;
+}
+
+.info-list a {
+  color: #6d658c;
+  text-decoration: none;
+}
+
+.info-list a:hover {
+  text-decoration: underline;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #c5c4e6;
+}
+
+.submit-btn {
+  padding: 12px 20px;
+  background-color: #c5c4e6;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #d5d7f2;
+}
+
+/* --- footer --- */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* tablets and smartphones */
+@media (max-width: 768px) {
+  /* stack brand and menu */
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* hero section -> stack image above text */
+  .hero-section {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-image {
+    margin-bottom: 30px;
+  }
+
+  /* contact section: single column layout */
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* tablet specific tweaks (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+/* smartphones */
+@media (max-width: 480px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
