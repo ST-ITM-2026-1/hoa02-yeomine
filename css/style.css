@@ -1,4 +1,43 @@
 /* --- base & reset --- */
+/* declare light mode (default) and dark mode css variables */
+:root {
+  --bg-color: #ffffff;
+  --text-main: #333333;
+  --text-muted: #555555;
+  --text-light: #666666;
+  --nav-bg: #333333;
+  --nav-text: #ffffff;
+  --accent-color: #8f85ac;
+  --accent-hover: #d5d7f2;
+  --btn-primary-bg: #c5c4e6;
+  --border-color: #dddddd;
+  --border-light: #eeeeee;
+  --border-input: #cccccc;
+  --card-bg: #ffffff;
+  --skill-bg: #f9f9f9;
+  --contact-heading: #8c719e;
+  --contact-link: #6d658c;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-main: #e0e0e0;
+  --text-muted: #bbbbbb;
+  --text-light: #aaaaaa;
+  --nav-bg: #111111;
+  --nav-text: #e0e0e0;
+  --accent-color: #a99cd1;
+  --accent-hover: #6c6999;
+  --btn-primary-bg: #5a5885;
+  --border-color: #333333;
+  --border-light: #222222;
+  --border-input: #444444;
+  --card-bg: #1e1e1e;
+  --skill-bg: #222222;
+  --contact-heading: #a88bc0;
+  --contact-link: #8d85b0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +47,12 @@
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  color: #333;
+  /* transition */
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 main {
@@ -22,8 +66,9 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: var(--nav-bg);
   padding: 1rem 2rem;
+  transition: background-color 0.3s ease; /* 수정된 부분: 전환 효과 추가 */
 }
 
 /* brand title styling */
@@ -31,12 +76,12 @@ nav {
   font-size: 1.3rem;
   font-weight: bold;
   padding: 0;
-  color: white;
+  color: var(--nav-text);
   text-decoration: none;
 }
 
 .nav-brand a:hover {
-  color: #8f85ac;
+  color: var(--accent-color);
   background-color: transparent;
 }
 
@@ -45,26 +90,29 @@ nav ul {
   display: flex;
   list-style: none;
   gap: 15px;
+  align-items: center;
 }
 
 nav a {
-  color: white;
+  color: var(--nav-text);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 nav ul a:hover,
 nav ul a.active {
-  background-color: #8f85ac;
+  background-color: var(--accent-color);
 }
 
 /* --- common components --- */
 .portfolio-section {
   margin-bottom: 50px;
   padding-bottom: 50px;
-  border-bottom: 2px dashed #ccc;
+  border-bottom: 2px dashed var(--border-input);
 }
 
 /* remove bottom border for the last section */
@@ -77,7 +125,7 @@ nav ul a.active {
 .portfolio-section h2 {
   text-align: center;
   margin-bottom: 30px;
-  color: #333;
+  color: var(--text-main);
   font-size: 2rem;
 }
 
@@ -98,23 +146,23 @@ nav ul a.active {
 .hero-text h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
-  color: #333;
+  color: var(--text-main);
 }
 
 .highlight {
-  color: #8f85ac;
+  color: var(--accent-color);
 }
 
 .hero-text h2 {
   font-size: 1.5rem;
-  color: #666;
+  color: var(--text-light);
   margin-bottom: 15px;
   font-weight: normal;
 }
 
 .hero-text p {
   font-size: 1.1rem;
-  color: #555;
+  color: var(--text-muted);
   margin-bottom: 25px;
   line-height: 1.8;
 }
@@ -131,23 +179,25 @@ nav ul a.active {
 }
 
 .btn-primary {
-  background-color: #c5c4e6;
+  background-color: var(--btn-primary-bg);
   color: white;
-  border: 2px solid #c5c4e6;
+  border: 2px solid var(--btn-primary-bg);
 }
 
 .btn-primary:hover {
-  background-color: #d5d7f2;
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: #c5c4e6;
-  border: 2px solid #c5c4e6;
+  color: var(--btn-primary-bg);
+  border: 2px solid var(--btn-primary-bg);
 }
 
 .btn-secondary:hover {
-  background-color: #d5d7f2;
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
   color: white;
 }
 
@@ -162,15 +212,13 @@ nav ul a.active {
   height: 250px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #eee;
+  border: 3px solid var(--border-light);
 }
 
 /* --- projects & experiences page --- */
 .projects-grid {
   display: grid;
-  /* automatically wrap columns based on available space(as many as fit) */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* if we want to split into a specific number of columns(n), use grid-template-columns: repeat(n, 1fr); */
   gap: 20px;
 }
 
@@ -179,44 +227,51 @@ nav ul a.active {
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
   padding: 20px;
   margin: 16px 0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .experience-item {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
   padding: 20px;
   margin: 16px 0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .project-card h3,
 .experience-header h3 {
-  color: #8f85ac;
+  color: var(--accent-color);
   margin-bottom: 10px;
 }
 
 /* github link button */
 .github-link {
   display: inline-block;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--nav-bg);
+  color: var(--nav-text);
   padding: 8px 12px;
   text-decoration: none;
   border-radius: 4px;
   font-size: 0.9rem;
   transition: background-color 0.3s ease;
   align-self: flex-start;
-  /* push the button to the bottom of the flex container */
   margin-top: auto;
 }
 
 .github-link:hover {
-  background-color: #555;
+  background-color: var(--text-light);
 }
 
 .experience-header {
@@ -227,7 +282,7 @@ nav ul a.active {
 }
 
 .experience-date {
-  color: #666;
+  color: var(--text-light);
   font-size: 0.9em;
 }
 
@@ -241,13 +296,16 @@ nav ul a.active {
 }
 
 .skill-item {
-  background: #f9f9f9;
+  background: var(--skill-bg);
+  border: 1px solid var(--border-color);
   padding: 15px 20px;
   border-radius: 5px;
-  border: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .skill-info {
@@ -257,13 +315,13 @@ nav ul a.active {
 
 .skill-name {
   font-weight: bold;
-  color: #333;
+  color: var(--text-main);
   font-size: 1.1rem;
 }
 
 .skill-score {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-light);
   margin-top: 5px;
 }
 
@@ -271,7 +329,7 @@ nav ul a.active {
 .star-rating {
   position: relative;
   font-size: 1.5rem;
-  color: #ccc;
+  color: var(--border-input);
   display: inline-block;
 }
 
@@ -293,14 +351,14 @@ nav ul a.active {
 
 .contact-info h2,
 .contact-form-wrapper h2 {
-  color: #8c719e;
+  color: var(--contact-heading);
   margin-bottom: 15px;
   font-size: 1.5rem;
 }
 
 .contact-info p {
   margin-bottom: 20px;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .info-list {
@@ -309,7 +367,7 @@ nav ul a.active {
 }
 
 .info-list a {
-  color: #6d658c;
+  color: var(--contact-link);
   text-decoration: none;
 }
 
@@ -331,28 +389,33 @@ nav ul a.active {
 .form-group label {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #333;
+  color: var(--text-main);
 }
 
 .form-group input,
 .form-group textarea {
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-input);
+  background-color: var(--bg-color);
+  color: var(--text-main);
   border-radius: 4px;
   font-family: inherit;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #c5c4e6;
+  border-color: var(--btn-primary-bg);
 }
 
 .submit-btn {
   padding: 12px 20px;
-  background-color: #c5c4e6;
+  background-color: var(--btn-primary-bg);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -364,7 +427,7 @@ nav ul a.active {
 }
 
 .submit-btn:hover {
-  background-color: #d5d7f2;
+  background-color: var(--accent-hover);
 }
 
 /* --- footer --- */
@@ -372,36 +435,81 @@ footer {
   text-align: center;
   padding: 30px 20px;
   margin-top: 40px;
-  border-top: 1px solid #eee;
-  color: #666;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-light);
   font-size: 0.9rem;
 }
 
-/* tablets and smartphones */
+/* theme toggle button */
+.icon-toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: var(--nav-text);
+  border-radius: 50%;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.icon-toggle-btn:hover {
+  background-color: rgba(143, 133, 172, 0.2);
+  transform: scale(1.1);
+}
+
+.moon-icon,
+.sun-icon {
+  position: absolute;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.sun-icon {
+  opacity: 0; /* 숨김 */
+  transform: rotate(90deg) scale(0);
+}
+
+.moon-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+body.dark-mode .sun-icon {
+  opacity: 1; /* 보임 */
+  transform: rotate(0deg) scale(1);
+  color: #f39c12;
+}
+
+body.dark-mode .moon-icon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0);
+}
+
 @media (max-width: 768px) {
-  /* stack brand and menu */
   nav {
     flex-direction: column;
     gap: 15px;
   }
-
-  /* hero section -> stack image above text */
   .hero-section {
     flex-direction: column-reverse;
     text-align: center;
   }
-
   .hero-image {
     margin-bottom: 30px;
   }
-
-  /* contact section: single column layout */
   .contact-container {
     grid-template-columns: 1fr;
   }
 }
 
-/* tablet specific tweaks (481px - 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   nav ul {
     flex-direction: row;
@@ -410,14 +518,12 @@ footer {
   }
 }
 
-/* smartphones */
 @media (max-width: 480px) {
   nav ul {
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
-
   .experience-header {
     flex-direction: column;
     align-items: flex-start;
