@@ -113,8 +113,34 @@
     <main class="portfolio-page">
       <section class="portfolio-section">
         <h1 class="page-title">Key Projects</h1>
+
+        <div class="filter-container">
+          <button
+            class="filter-btn active"
+            data-filter="all">
+            All
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="web">
+            Web
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="mobile">
+            Mobile
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="ai/ml">
+            AI/ML
+          </button>
+        </div>
+
         <div class="projects-grid">
-          <div class="project-card">
+          <div
+            class="project-card"
+            data-category="web">
             <h3>ZIBI (지비)</h3>
             <ul>
               <li>
@@ -141,7 +167,9 @@
             >
           </div>
 
-          <div class="project-card">
+          <div
+            class="project-card"
+            data-category="mobile">
             <h3>Moodly</h3>
             <ul>
               <li>
@@ -168,7 +196,9 @@
             >
           </div>
 
-          <div class="project-card">
+          <div
+            class="project-card"
+            data-category="ai/ml">
             <h3>Summer Vacation Python Education Volunteering</h3>
             <ul>
               <li>
