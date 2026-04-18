@@ -286,6 +286,36 @@ nav ul a.active {
   font-size: 0.9em;
 }
 
+/* --- project filter buttons --- */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--accent-color);
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: var(--accent-color);
+  color: #ffffff;
+}
+
+.hidden {
+  display: none !important;
+}
+
 /* --- skills page --- */
 .skills-container {
   display: flex;
